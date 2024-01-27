@@ -2,20 +2,21 @@ class Petition:
     def __init__(self, start, length) -> None:
         self.start = start
         self.end = start + length
-    
+
     def __repr__(self) -> str:
-        return f'({self.start}, {self.end})'
+        return f"({self.start}, {self.end})"
+
 
 def schedule_unweighted_intervals() -> list:
     # Lee el número de peticiones
     t = int(input())
-    
+
     # Lee las peticiones
     requests = []
     for i in range(t):
         start, length = map(int, input().split())
         requests.append(Petition(start, length))
-    
+
     # Ordena las peticiones por su tiempo de finalización
     requests.sort(key=lambda request: request.end)
 
@@ -34,5 +35,6 @@ def schedule_unweighted_intervals() -> list:
 
     return A
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(schedule_unweighted_intervals())
