@@ -10,13 +10,13 @@ function r = perrin(n)
 
 % Eleva una matriz a la n-ésima potencia
 function r = mathpower(M, n)
-if n == 1
-    r = M;
-else
-    P = mathpower(M, floor(n/2));
-    if mod(n, 2) == 0
-        r = P * P;
+    if n == 1
+        r = M;
     else
-        r = P * P * M;
+        P = mathpower(M, floor(n/2));
+        if mod(n, 2) == 0
+            r = P * P;
+        else
+            r = P * P * M;
+        end
     end
-end
