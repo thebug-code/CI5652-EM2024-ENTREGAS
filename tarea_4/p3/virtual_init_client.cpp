@@ -128,8 +128,8 @@ int* VirtualInitClient::consultar_pos(unsigned i) {
         return NULL;
     }
 
-    if (0 <= b[i] && b[i] <= ctr) {
-        if (a[b[i]] == i)
+    if (0 <= b[i] && b[i] <= (int)ctr) {
+        if (a[b[i]] == (int)i)
             return &T[i];
     }
 
