@@ -20,21 +20,21 @@ int contar_subarreglos_buenos(vector<int> arr) {
         cont = 0;
         for (int j = i - 1; j < n; j++) {
             if (arr[j] % i == 0) {
-                memo[(i - 1) % 2][j] = memo[(i - 2) % 2][j - 1] + cont;
-                cont = memo[(i - 1) % 2][j];
+                memo[(i - 1) & 1][j] = memo[(i - 2) & 1][j - 1] + cont;
+                cont = memo[(i - 1) & 1][j];
             }
             else
-                memo[(i - 1) % 2][j] = cont;
+                memo[(i - 1) & 1][j] = cont;
         }
 
-        res += memo[(i - 1) % 2][n - 1];
+        res += memo[(i - 1) & 1][n - 1];
     }
 
     return res;
 }
 
 int main() {
-    vector<int> arr = {2, 2, 1, 22, 15};
+    vector<int> arr = {2, 2, 3, 22, 15};
     cout << contar_subarreglos_buenos(arr) << endl;
     return 0;
 }
