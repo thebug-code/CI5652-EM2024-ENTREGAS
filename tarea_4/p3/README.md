@@ -25,7 +25,7 @@ Para compilar el programa, simplemente ejecuta el siguiente comando:
 make
 ```
 
-Posteriormente, ejecuta el programa con el siguiente comando, donde `<n>` es el tamaño del arreglo T:
+Posteriormente, ejecute el siguiente comando, donde `<n>` es el tamaño del arreglo T:
 
 ```bash
 ./runVirtualInitCliente <n>
