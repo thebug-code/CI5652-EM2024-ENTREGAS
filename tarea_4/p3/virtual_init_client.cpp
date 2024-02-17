@@ -178,10 +178,18 @@ void VirtualInitClient::usage() {
     cout << "SALIR: Termina la ejecucion" << endl;
 }
 
-int main() {
-    VirtualInitClient* vic = new VirtualInitClient(8);
-    
+int main(int argc, char* argv[]) {
+    int n;
+    if (argc != 2) {
+        cout << "Error: formato incorrecto" << endl;
+        cout << "Uso: ./runVirtualInitClient" << " <n>" << endl;
+        return EXIT_FAILURE;
+    }
+
+    n = atoi(argv[1]);
+    VirtualInitClient* vic = new VirtualInitClient(n);
     vic->run_simulation();
     delete vic;
+
     return 0;     
 }
