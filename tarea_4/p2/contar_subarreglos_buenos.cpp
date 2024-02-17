@@ -7,9 +7,9 @@ int contar_subarreglos_buenos(vector<int> arr) {
     int memo[2][n];     /* Arreglo para guardar la cantidad de subarreglos
                            buenos que terminan en la posición i */
     int res = n;        /* Variable para guardar el resultado */
+    int cont = 0;       /* Contador para subarreglos buenos */
 
     /* Inicializa el arreglo memo */
-    memo[1][0] = 0;
     for (int i = 0; i < n; i++)
         memo[0][i] = i + 1;
 
@@ -17,20 +17,17 @@ int contar_subarreglos_buenos(vector<int> arr) {
     /* Para cada número i, calcula la cantidad de subarreglos buenos que
        terminan en la posición j */
     for (int i = 2; i <= n; i++) {
+        cont = 0;
         for (int j = i - 1; j < n; j++) {
-            if (arr[j] % i == 0)
-                memo[1][j] = memo[0][j - 1] + memo[1][j - 1];
+            if (arr[j] % i == 0) {
+                memo[(i - 1) % 2][j] = memo[(i - 2) % 2][j - 1] + cont;
+                cont = memo[(i - 1) % 2][j];
+            }
             else
-                memo[1][j] = memo[1][j - 1];
+                memo[(i - 1) % 2][j] = cont;
         }
 
-        res += memo[1][n - 1];
-
-        /* Intercambia los valores de las filas */
-        for (int k = 0; k < n; k++) {
-            memo[0][k] = memo[1][k];
-            memo[1][k] = 0;
-        }
+        res += memo[(i - 1) % 2][n - 1];
     }
 
     return res;
