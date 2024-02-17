@@ -33,8 +33,13 @@ int contar_subarreglos_buenos(vector<int> arr) {
     return res;
 }
 
-int main() {
-    vector<int> arr = {2, 2, 3, 22, 15};
-    cout << contar_subarreglos_buenos(arr) << endl;
-    return 0;
+int main(int argc, char const *argv[]) {
+    vector<int> arr;
+    if (argc > 1) {
+        for (int i = 1; i < argc; i++)
+            arr.push_back(atoi(argv[i]));
+        cout << contar_subarreglos_buenos(arr) << endl;
+        return 0;
+    }
+    return 1;
 }
