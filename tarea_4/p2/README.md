@@ -1,5 +1,5 @@
 # Contador de Sub-Arreglos Buenos
-Este programa calcula la cantidad de sub-arreglos buenos de un arreglo dado. Se define un sub-arreglo bueno como aquel que no está vacío y donde cada elemento en la posición i es divisible por i. Adem\'as, se dice que B es un sub-arreglo de A si es posible remover elementos de A respetando el orden para obtener B.
+Este programa calcula la cantidad de sub-arreglos buenos de un arreglo dado. Se define un sub-arreglo bueno como aquel que no está vacío y donde cada elemento en la posición i es divisible por i. Además, se dice que B es un sub-arreglo de A si es posible remover elementos de A respetando el orden en el que aparecen para obtener B.
 
 ## Compilación y Ejecución
 
