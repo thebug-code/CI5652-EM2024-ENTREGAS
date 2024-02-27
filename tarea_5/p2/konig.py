@@ -45,7 +45,7 @@ def count_num_to_delete(C: set) -> int:
                 G.add_edge(c1, c2)
 
     # Calcula el emparejamiento maximo usando el algoritmo de Hopcroft-Karp
-    matching = nx.bipartite.maximum_matching(G)
+    matching = nx.bipartite.hopcroft_karp_matching(G)
 
     # Calcula la cantidad de aristas en el emparejamiento maximo
     num_edges = len(matching) // 2
