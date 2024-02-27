@@ -1,5 +1,6 @@
 import networkx as nx
-
+import sys
+import ast
 
 def is_prime(n):
     """ "pre-condition: n is a nonnegative integer
@@ -51,15 +52,6 @@ def count_num_to_delete(C: set) -> int:
 
     return num_edges
 
+if __name__ == '__main__':
+    print(count_num_to_delete(set(map(int, sys.argv[1:]))))
 
-C = {2, 4, 1, 3, 8, 12, 13}
-print(count_num_to_delete(C))
-
-# La division del conjunto C en C1 y C2 toma tiempo O(n)
-# La creacion de las conexiones entre los nodos de C1 y C2 toma tiempo O(n^2),
-# asumiendo que la funcion is_prime toma tiempo O(1)
-# El calculo del emparejamiento maximo usando el algoritmo de Hopcroft-Karp toma
-# tiempo O(E * sqrt(V)), donde E es el numero de aristas y V es el numero de vertices
-# E = O(n^2) ya que hay n^2 posibles conexiones entre los nodos de C1 y C2 (no se si es correcto)
-# V = O(n) ya que hay n nodos en total
-# Por lo tanto, el tiempo total de ejecucion es O(n^2 * sqrt(n))
