@@ -1,32 +1,3 @@
-# Sea A = (N, C) un árbol (notemos que |C| = |N| - 1) y un predicado p : C -> {true, false}.
-# Queremos responder consultas que pueden tener una de dos formas:
-# 1) forall(x, y), para x, y \in N, que diga si evaluar p para todas las conexiones entre entre
-# los nodos x e y resulta en true.
-# 2) exists(x; y), para x, y\ in N, que diga si evaluar p para alguna de las conexiones entre
-# entre los nodos x e y resulta en true.
-# Diseñe un algoritmo que pueda responder Q consultas de cualquiera de estas formas en
-# tiempo O(|N| + Qlog |N|), usando memoria adicional O(|N|)
-#
-# Pista:
-# Realice un precondicionamiento adecuado en O(|N|), que le permita responder cada consulta
-# en O(log |N|).
-
-# Solución:
-# El algoritmo se basa en el mismo proceso de encontrar el LCA en un arbol usando un arbol de segmentos.
-# Entonces dado dos nodos x y y, se calcula el LCA. Luego se verifica si p es verdadero para las conexiones
-# entre el LCA y x y entre el LCA y y. Para realizar este recorrido se utiliza el arreglo de Euler. El recorrido
-# comienza desde el nodo donde se encuentra el LCA y se recorre hasta la primera aparición de x y y evaluando p
-# en cada conexión.
-
-# Como en un arbol E = V - 1, el recorrido de tomara O(V + V - 1) = O(V) = O(N). La construcción del arbol de segmentos
-# toma O(V + E) = O(2 * V - 1) = O(N). La consulta de RMQ toma O(log N) y recorrer el arreglo de Euler toma tiempo O(log N)
-# (desde el LCA hasta el nodo u o v). Entonces para responder Q consultas toma tiempo O(N + N + Q * log N) = O(N + Q * log N)
-# y se usa memoria adicional O(N), ya que se utiliza un arreglo de tamaño O(n) (n = 2 * |V| - 1) para el arreglo de Euler,
-# otro de N para el nivel de cada nodo, otro de tamaño V para el arreglo de primeras apariciones y O(n) para el arbol de
-# segmentos.
-
-# Nota: No estoy seguro si recorrer el arreglo de Euler desde el LCA hasta el nodo u o v toma tiempo O(log N).
-
 # https://www.geeksforgeeks.org/find-lca-in-binary-tree-using-rmq/
 
 # Python3 program to find LCA of u and v by
