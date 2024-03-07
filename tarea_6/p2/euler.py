@@ -20,6 +20,7 @@ class BinaryTree:
 		self.euler = [0] * (2 * self.val_max - 1)
 		self.level = [0] * (2 * self.val_max - 1)
 		self.f_occur = [-1] * (self.val_max + 1)
+		self.parent = {}
 		self.fill = 0
 		self.segment_tree = []
 
@@ -134,7 +135,7 @@ class BinaryTree:
 			0, 0, n - 1, arr)
 	
 	# Recursive version of the Euler tour of T 
-	def euler_tour(self, node: Node, lev: int):
+	def euler_tour(self, node: Node, lev: int, parent: Node = None):
 		
 		# If the passed node exists
 		if node is not None:
@@ -146,11 +147,14 @@ class BinaryTree:
 			if self.f_occur[node.val] == -1:
 				self.f_occur[node.val] = self.fill - 1
 
+			# Store the parent node
+			self.parent[node.val] = parent.val if parent else -1
+				
 			# Tour left subtree if exists and remark
 			# euler and level arrays for parent on
 			# return
 			if node.left is not None:
-				self.euler_tour(node.left, lev + 1)
+				self.euler_tour(node.left, lev + 1, node)
 				self.euler[self.fill] = node.val
 				self.level[self.fill] = lev
 				self.fill += 1
@@ -159,7 +163,7 @@ class BinaryTree:
 			# remark euler and level arrays for
 			# parent on return
 			if node.right is not None:
-				self.euler_tour(node.right, lev + 1)
+				self.euler_tour(node.right, lev + 1, node)
 				self.euler[self.fill] = node.val
 				self.level[self.fill] = lev
 				self.fill += 1
@@ -197,35 +201,32 @@ def p(x, y):
 def forall(x, y):
 	r = True
 
-	# Recorrido desde el LCA hasta el nodo u
-	for i in range(index, -1, -1):
-		if tree.euler[i] == u:
-			break
-		r = r and p(tree.euler[i], tree.euler[i - 1])
+	# Recorrido desde el u hasta el LCA usando el arreglo parent
+	while x != lca:
+		r = r and p(x, tree.parent[x])
+		x = tree.parent[x]
+
 
 	# Recorrido desde el LCA hasta el nodo v
-	for i in range(index, len(tree.euler)):
-		if tree.euler[i] == v:
-			break
-		r = r and p(tree.euler[i], tree.euler[i + 1])
+	while y != lca:
+		r = r and p(y, tree.parent[y])
+		y = tree.parent[y]
 	
 	return r
 
 def exists(x, y):
 	r = False
 
-	# Recorrido desde el LCA hasta el nodo u
-	for i in range(index, -1, -1):
-		if tree.euler[i] == u:
-			break
-		r = r or p(tree.euler[i], tree.euler[i - 1])
+	# Recorrido desde el u hasta el LCA usando el arreglo parent
+	while x != lca:
+		r = r or p(x, tree.parent[x])
+		x = tree.parent[x]
 
-	# Recorrido desde el LCA hasta el nodo v
-	for i in range(index, len(tree.euler)):
-		if tree.euler[i] == v:
-			break
-		r = r or p(tree.euler[i], tree.euler[i + 1])
-	
+	# Recorrido desde el v hasta el LCA usando el arreglo parent
+	while y != lca:
+		r = r or p(y, tree.parent[y])
+		y = tree.parent[y]
+
 	return r
 	
 
@@ -242,11 +243,14 @@ if __name__ == "__main__":
 	root.left.right.left = Node(8)
 	root.left.right.right = Node(9)
 
+	# root = Node(1)
+	# root.left = Node(2)
+	# root.right = Node(5)
+	# root.left.left = Node(3)
+	# root.left.right = Node(4)
+
 	tree = BinaryTree(root)
-	u, v = 4, 9
+	u, v = 4, 5
 	lca, index = tree.find_lca(u, v)
-	
 	print("forall({}, {}) = {}".format(u, v, forall(u, v)))
 	print("exists({}, {}) = {}".format(u, v, exists(u, v)))
-		
-# This code is contributed by Rajat Srivastava
