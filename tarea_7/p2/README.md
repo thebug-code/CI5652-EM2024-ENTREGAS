@@ -14,7 +14,7 @@ Para ejecutar el programa, utiliza el siguiente comando:
 python grahamscan.py <puntos>
 ```
 
-Donde `<puntos>` es una secuencia de números que representan las coordenadas \( x, y \) de los puntos. Por ejemplo en:
+Donde `<puntos>` es una secuencia de números que representan las coordenadas \(x, y\) de los puntos. Por ejemplo en:
 
 ```bash
 python grahamscan.py 0 3 1 1 2 2 4 4 0 0 1 2 3 1 3 3
