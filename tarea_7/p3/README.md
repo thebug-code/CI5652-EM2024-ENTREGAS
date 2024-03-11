@@ -13,4 +13,4 @@ Para ejecutar el programa:
 python longestsubstring.py <s>
 ```
 
-Donde <s> es la cadena de caracteres a analizar.
+Donde <s\> es la cadena de caracteres a analizar.
